@@ -7,10 +7,12 @@ const UserModule = {
   exists: async (id: string|ObjectId): Promise<boolean> => {
     const UserCollection = await getUserCollection();
 
-    const user: UserMin|undefined = await UserCollection.findOne({ _id: new ObjectId(id) }, {
+    const user: UserMin|undefined = await UserCollection.findOne({
+      _id: new ObjectId(id), 
+    }, {
       projection: {
-        _id: 1
-      }
+        _id: 1,
+      },
     });
 
     return !!user;
@@ -18,7 +20,9 @@ const UserModule = {
   getById: async (id: string|ObjectId): Promise<User|undefined> => {
     const UserCollection = await getUserCollection();
 
-    return UserCollection.findOne({ _id: new ObjectId(id) }, {
+    return UserCollection.findOne({
+      _id: new ObjectId(id), 
+    }, {
       projection: {
         _id         : 1,
         firstName   : 1,
@@ -28,16 +32,18 @@ const UserModule = {
         email       : 1,
         phone       : 1,
         avatar      : 1,
-      }
+      },
     });
   },
   getByIdMin: async (id: string|ObjectId): Promise<UserMin|undefined> => {
     const UserCollection = await getUserCollection();
 
-    return UserCollection.findOne({ _id: new ObjectId(id) }, {
+    return UserCollection.findOne({
+      _id: new ObjectId(id), 
+    }, {
       projection: {
         _id: 1,
-      }
+      },
     });
   },
   upsert: async (userDetails: Omit<User, '_id'>) => {
@@ -54,15 +60,17 @@ const UserModule = {
         email     : userDetails.email,
         phone     : userDetails.phone,
         oauth     : userDetails.oauth,        
-      }
-    }, {upsert: true});
+      },
+    }, {
+      upsert: true,
+    });
 
     if(result.upsertedId) {
       return UserModule.getByIdMin(result.upsertedId);
     }
 
     throw new Error('Failed to create user');
-  }
+  },
 };
 
 

@@ -1,6 +1,8 @@
 import dotenv from 'dotenv-safe';
 
-dotenv.config({ path: '.env' });
+dotenv.config({
+  path: '.env', 
+});
 
 export interface Config {
   port: number;

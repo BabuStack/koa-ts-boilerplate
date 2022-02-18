@@ -7,16 +7,19 @@ winston.configure({
   level      : config.debugLogging ? 'silly' : 'info',
   transports : [
     // - Write all logs error (and below) to `error.log`.
-    new transports.File({ filename: path.resolve(__dirname, '../../logs/error.log'), level: 'error' }),
+    new transports.File({
+      filename : path.resolve(__dirname, '../../logs/error.log'),
+      level    : 'error', 
+    }),
     
     // - Write to all logs with specified level to console.
     new transports.Console({
       format: format.combine(
         format.colorize(),
         format.simple()
-      )
-    })
-  ]
+      ),
+    }),
+  ],
 });
 
 const getCommonMeta = () => ({
@@ -45,7 +48,7 @@ const logger = {
   },
   silly: (message: string) => {
     winston.silly(message, getCommonMeta());
-  }
+  },
 };
 
 export default logger;

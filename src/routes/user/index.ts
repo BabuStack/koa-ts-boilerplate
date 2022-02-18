@@ -2,7 +2,7 @@ import Router from '@koa/router';
 import UserModule from 'src/modules/user/api';
 
 const userRouter = new Router({
-  prefix: '/user'
+  prefix: '/user',
 });
 
 userRouter.get('/details', async (ctx) => {

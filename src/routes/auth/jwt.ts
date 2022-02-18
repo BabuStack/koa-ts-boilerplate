@@ -18,14 +18,17 @@ function sign(userId: string) {
     config.jwtSecret,
     {
       algorithm: 'HS256',
-    },
+    }
   );
 
   return token;
 }
 
 function middleware() {
-  return koaJWT({ secret: config.jwtSecret, algorithms: ['HS256'] });
+  return koaJWT({
+    secret     : config.jwtSecret,
+    algorithms : ['HS256'], 
+  });
 }
 
 const JWT = {

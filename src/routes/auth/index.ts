@@ -47,8 +47,8 @@ passport.use(
       } catch (err) {
         done(err);
       }
-    },
-  ),
+    }
+  )
 );
 
 // Googe Oauth2
@@ -56,7 +56,7 @@ authRouter.get(
   '/auth/google',
   passport.authenticate('google', {
     scope: ['profile', 'email'],
-  }),
+  })
 );
 
 const redirectBaseURL = 'https://my-domain.com';
@@ -69,7 +69,7 @@ authRouter.get(
   (ctx) => {
     const token = JWT.sign(ctx.state.user._id.toHexString());
     ctx.redirect(`${redirectBaseURL}/success?token=${token}`);
-  },
+  }
 );
 
 export default authRouter;

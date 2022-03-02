@@ -33,9 +33,12 @@ module.exports = {
       'functions' : 'never',
     }],
     'object-curly-newline': ['error', {
-      'ObjectExpression' : 'always',
-      'ObjectPattern'    : {
-        'multiline': true, 
+      'ObjectExpression': {
+        'minProperties': 1,
+      },
+      'ObjectPattern': {
+        'multiline'     : true, 
+        'minProperties' : 1,
       },
     }],
     'object-property-newline'                           : 'error',
@@ -48,8 +51,9 @@ module.exports = {
         'ignoreParameters': true,
       },
     ],
-    '@typescript-eslint/no-unused-vars' : 'warn',
-    '@typescript-eslint/indent'         : [
+    '@typescript-eslint/no-unused-vars'  : 'warn',
+    '@typescript-eslint/no-explicit-any' : 'off',
+    '@typescript-eslint/indent'          : [
       'error',
       2,
       {
